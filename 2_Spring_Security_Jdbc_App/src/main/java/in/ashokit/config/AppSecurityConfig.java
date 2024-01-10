@@ -11,14 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class AppSecurityConfig {
 
-	@Autowired
+	//@Autowired
 	private DataSource dataSource;
 	
-	@Autowired
+	//@Autowired
 	public void authManager(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
@@ -27,7 +27,7 @@ public class AppSecurityConfig {
 		.authoritiesByUsernameQuery("select username,authority from authorities where username=?");
 	}
 	
-	@Bean
+	//@Bean
 	public SecurityFilterChain securityConfig(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((req)->req.requestMatchers("/admin").hasRole("ADMIN")
 				.requestMatchers("/user").hasAnyRole("ADMIN","USER")
